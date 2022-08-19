@@ -50,10 +50,26 @@ return packer.startup(function(use)
   use "folke/which-key.nvim" -- Leader key menu
   use 'hrsh7th/nvim-cmp' -- Auto complete
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use 'numToStr/Comment.nvim'
+  -- Completions
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use "williamboman/mason.nvim"
+
+  --lsp
+  use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/cmp-nvim-lsp'
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+
+  --language parser / highlighting
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

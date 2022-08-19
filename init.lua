@@ -3,11 +3,10 @@ require "user.plugins"
 require "user.dashboard"
 require "user.colorscheme"
 require "user.keymaps"
-require "user.whichkey"
-require "user.cmp"
-
-function doThings()
-  print('TEST TEST TEST')
-end
-
-
+require "user.cmp" -- https://github.com/hrsh7th/nvim-cmp
+require "user.comment" -- https://github.com/numToStr/Comment.nvim
+require "user.lsp" -- https://github.com/neovim/nvim-lspconfig
+require "user.mason" -- https://github.com/williamboman/mason.nvim
+require "user.telescope" -- https://github.com/nvim-telescope/telescope.nvim
+require "user.treesitter" -- https://github.com/nvim-treesitter/nvim-treesitter
+require "user.whichkey" -- https://github.com/folke/which-key.nvim
