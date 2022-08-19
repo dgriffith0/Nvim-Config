@@ -10,3 +10,4 @@ require "user.mason" -- https://github.com/williamboman/mason.nvim
 require "user.telescope" -- https://github.com/nvim-telescope/telescope.nvim
 require "user.treesitter" -- https://github.com/nvim-treesitter/nvim-treesitter
 require "user.whichkey" -- https://github.com/folke/which-key.nvim
+require "user.project" -- https://github.com/ahmedkhalf/project.nvim 

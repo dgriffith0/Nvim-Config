@@ -154,6 +154,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["project.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\project.nvim",
+    url = "https://github.com/ahmedkhalf/project.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
