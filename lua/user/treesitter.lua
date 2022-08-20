@@ -28,6 +28,13 @@ local options = {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  endwise = {
+    -- Enables plugin: https://github.com/RRethy/nvim-treesitter-endwise
+    enable = true
+  },
+  rainbow = {
+    enable = true
+  }
 }
 
 treesitter.setup(options)

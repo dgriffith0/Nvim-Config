@@ -6,4 +6,8 @@ end
 
 -- npairs.add_rules(require "nvim-autopairs.rules.endwise-lua")
 
-npairs.setup()
+local options = {
+  check_ts = true
+}
+
+npairs.setup(options)

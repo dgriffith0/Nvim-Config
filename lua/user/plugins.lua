@@ -49,6 +49,10 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim" -- Grep Searching
   use "folke/which-key.nvim" -- Leader key menu
   use 'hrsh7th/nvim-cmp' -- Auto complete
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
   use 'numToStr/Comment.nvim' --GCC Comments
 
   -- Completions
@@ -71,12 +75,20 @@ return packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
+
+  -- Telescope Add-ons
   use "ahmedkhalf/project.nvim"
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
+
+  --Tree Sitter Add-ons
   use "windwp/nvim-autopairs"
+  use 'RRethy/nvim-treesitter-endwise'
+  use 'p00f/nvim-ts-rainbow'
+
+  -- Debugging
+  use 'mfussenegger/nvim-dap'
+
+  -- Rust
+  use 'simrat39/rust-tools.nvim'
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()
