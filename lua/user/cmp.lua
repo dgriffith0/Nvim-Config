@@ -1,21 +1,8 @@
-
 ---checks if the character preceding the cursor is a space character
 ---@return boolean true if it is a space character, false otherwise
 local check_backspace = function()
   local col = vim.fn.col "." - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
-
-local function T(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
----wraps vim.fn.feedkeys while replacing key codes with escape codes
----Ex: feedkeys("<CR>", "n") becomes feedkeys("^M", "n")
----@param key string
----@param mode string
-local function feedkeys(key, mode)
-  vim.fn.feedkeys(T(key), mode)
 end
 
 ---when inside a snippet, seeks to the nearest luasnip field if possible, and checks if it is jumpable
@@ -126,16 +113,18 @@ local function jumpable(dir)
   end
 end
 
-  local status_cmp_ok, cmp = pcall(require, "cmp")
-  if not status_cmp_ok then
-    return
-  end
-  local status_luasnip_ok, luasnip = pcall(require, "luasnip")
-  if not status_luasnip_ok then
-    return
-  end
+local status_cmp_ok, cmp = pcall(require, "cmp")
+if not status_cmp_ok or cmp == nil then
+  return
+end
 
-  local options = {
+
+local status_luasnip_ok, luasnip = pcall(require, "luasnip")
+if not status_luasnip_ok then
+  return
+end
+
+local options = {
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
@@ -274,6 +263,11 @@ end
     },
   }
 
-cmp.setup(options)
-  
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+
+cmp.setup(options)

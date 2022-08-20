@@ -72,6 +72,12 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
   use "ahmedkhalf/project.nvim"
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+  use "windwp/nvim-autopairs"
+
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
