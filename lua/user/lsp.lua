@@ -37,19 +37,14 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
-}
-
-lspconfig['rust_analyzer'].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    -- Server-specific settings...
-    settings = {
-      ["rust-analyzer"] = {}
-    }
-  }
+-- lspconfig['rust_analyzer'].setup {
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+--     -- Server-specific settings...
+--     settings = {
+--       ["rust-analyzer"] = {}
+--     }
+--   }
 
   lspconfig['sumneko_lua'].setup {
   settings = {

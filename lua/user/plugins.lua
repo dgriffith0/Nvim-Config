@@ -65,6 +65,7 @@ return packer.startup(function(use)
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use "williamboman/mason.nvim"
+  use 'jose-elias-alvarez/null-ls.nvim'
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine

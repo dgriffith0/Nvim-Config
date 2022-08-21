@@ -13,3 +13,5 @@ require "user.whichkey" -- https://github.com/folke/which-key.nvim
 require "user.project" -- https://github.com/ahmedkhalf/project.nvim 
 require "user.lualine"
 require "user.autopairs" -- https://github.com/windwp/nvim-autopairs 
+require "user.rust"
+require "user.null-ls"
