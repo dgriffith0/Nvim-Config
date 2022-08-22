@@ -101,7 +101,7 @@ return packer.startup(function(use)
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
   }
-
+  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
