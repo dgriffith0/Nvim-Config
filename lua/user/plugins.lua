@@ -45,7 +45,7 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "goolord/alpha-nvim" -- Startup Dashboard
-  use "ellisonleao/gruvbox.nvim" -- Color scheme 
+  use "ellisonleao/gruvbox.nvim" -- Color scheme
   use "nvim-telescope/telescope.nvim" -- Grep Searching
   use "folke/which-key.nvim" -- Leader key menu
   use 'hrsh7th/nvim-cmp' -- Auto complete
@@ -90,6 +90,17 @@ return packer.startup(function(use)
 
   -- Rust
   use 'simrat39/rust-tools.nvim'
+  use 'nvim-telescope/telescope-ui-select.nvim'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+  }
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+  }
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()

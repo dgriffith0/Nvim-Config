@@ -15,3 +15,6 @@ require "user.lualine"
 require "user.autopairs" -- https://github.com/windwp/nvim-autopairs 
 require "user.rust"
 require "user.null-ls"
+require "user.explorer"
+require "user.trouble"
+require "user.autocommands"

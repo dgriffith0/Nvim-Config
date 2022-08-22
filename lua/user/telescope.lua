@@ -5,4 +5,18 @@ if not status_ok then
   return
 end
 
-telescope.setup()
+local options = {
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      }
+    }
+  }
+}
+
+telescope.setup(options)
+
+telescope.load_extension("ui-select")
+
+

@@ -154,6 +154,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-tree.lua"] = {
+    loaded = true,
+    path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-treesitter",
@@ -199,10 +204,20 @@ _G.packer_plugins = {
     path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
   },
+  ["telescope-ui-select.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope-ui-select.nvim",
+    url = "https://github.com/nvim-telescope/telescope-ui-select.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\dgrif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
   },
   ["which-key.nvim"] = {
     loaded = true,
