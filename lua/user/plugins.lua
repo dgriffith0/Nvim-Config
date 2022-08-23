@@ -102,6 +102,8 @@ return packer.startup(function(use)
     requires = "kyazdani42/nvim-web-devicons",
   }
   use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
+  use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use { 'rcarriga/nvim-notify' }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
