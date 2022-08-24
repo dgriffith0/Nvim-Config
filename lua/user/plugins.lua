@@ -1,114 +1,74 @@
-local fn = vim.fn
+local plugins = {
 
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
-end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
-
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-}
-
--- Install your plugins here
-return packer.startup(function(use)
   -- My plugins here
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "goolord/alpha-nvim" -- Startup Dashboard
-  use "nvim-telescope/telescope.nvim" -- Grep Searching
-  use "folke/which-key.nvim" -- Leader key menu
-  use 'hrsh7th/nvim-cmp' -- Auto complete
-  use {
+  { "wbthomason/packer.nvim" },
+  { "nvim-lua/popup.nvim" },
+  { "nvim-lua/plenary.nvim" },
+  { "goolord/alpha-nvim" },
+  { "nvim-telescope/telescope.nvim" },
+  { "folke/which-key.nvim" },
+  { 'hrsh7th/nvim-cmp' },
+  {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-  use 'numToStr/Comment.nvim' --GCC Comments
+  },
+  { 'numToStr/Comment.nvim' },
   --
   -- Colorschemes
-  use 'folke/tokyonight.nvim'
-  use "ellisonleao/gruvbox.nvim"
+  { 'folke/tokyonight.nvim' },
+  { "ellisonleao/gruvbox.nvim" },
 
   -- Completions
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use "saadparwaiz1/cmp_luasnip"
+  { 'hrsh7th/cmp-buffer' },
+  { 'hrsh7th/cmp-path' },
+  { 'hrsh7th/cmp-cmdline' },
+  { "saadparwaiz1/cmp_luasnip" },
 
   --lsp
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use "williamboman/mason.nvim"
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'nvim-lua/lsp-status.nvim'
+  { 'neovim/nvim-lspconfig' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { "williamboman/mason.nvim" },
+  { 'jose-elias-alvarez/null-ls.nvim' },
+  { 'nvim-lua/lsp-status.nvim' },
 
   -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  { "L3MON4D3/LuaSnip" },
+  { "rafamadriz/friendly-snippets" },
 
   -- language parser / highlighting
-  use {
+  {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-  }
+  },
 
   -- Telescope Add-ons
-  use "ahmedkhalf/project.nvim"
+  { "ahmedkhalf/project.nvim" },
 
   --Tree Sitter Add-ons
-  use "windwp/nvim-autopairs"
-  use 'RRethy/nvim-treesitter-endwise'
-  use 'p00f/nvim-ts-rainbow'
+  { "windwp/nvim-autopairs" },
+  { 'RRethy/nvim-treesitter-endwise' },
+  { 'p00f/nvim-ts-rainbow' },
 
   -- Debugging
-  use 'mfussenegger/nvim-dap'
+  { 'mfussenegger/nvim-dap' },
 
   -- Rust
-  use 'simrat39/rust-tools.nvim'
-  use 'nvim-telescope/telescope-ui-select.nvim'
-  use {
+  { 'simrat39/rust-tools.nvim' },
+  { 'nvim-telescope/telescope-ui-select.nvim' },
+  {
     'kyazdani42/nvim-tree.lua',
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
-  }
-  use {
+  },
+  {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-  }
-  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
-  use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' }
-  use { 'rcarriga/nvim-notify' }
-  use({
+  },
+  { "akinsho/toggleterm.nvim", tag = 'v2.*' },
+  { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' },
+  { 'rcarriga/nvim-notify' },
+  {
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
@@ -116,8 +76,7 @@ return packer.startup(function(use)
         -- Configuration here, or leave empty to use defaults
       })
     end
-  })
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
+  }
+}
+
+return plugins
