@@ -1,5 +1,6 @@
 require "user.options"
 require "user.plugins"
+require "user.utils"
 require "user.dashboard"
 require "user.colorscheme"
 require "user.keymaps"

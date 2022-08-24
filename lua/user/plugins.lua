@@ -45,7 +45,6 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "goolord/alpha-nvim" -- Startup Dashboard
-  use "ellisonleao/gruvbox.nvim" -- Color scheme
   use "nvim-telescope/telescope.nvim" -- Grep Searching
   use "folke/which-key.nvim" -- Leader key menu
   use 'hrsh7th/nvim-cmp' -- Auto complete
@@ -54,24 +53,29 @@ return packer.startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use 'numToStr/Comment.nvim' --GCC Comments
+  --
+  -- Colorschemes
+  use 'folke/tokyonight.nvim'
+  use "ellisonleao/gruvbox.nvim"
 
   -- Completions
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "saadparwaiz1/cmp_luasnip"
 
   --lsp
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use "williamboman/mason.nvim"
   use 'jose-elias-alvarez/null-ls.nvim'
+  use 'nvim-lua/lsp-status.nvim'
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
-  --language parser / highlighting
+  -- language parser / highlighting
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -104,6 +108,15 @@ return packer.startup(function(use)
   use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
   use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'rcarriga/nvim-notify' }
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

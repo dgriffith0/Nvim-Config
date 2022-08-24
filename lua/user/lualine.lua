@@ -5,6 +5,6 @@ if not status_ok then
   return
 end
 
-local options = {options = { theme = 'gruvbox' }}
+local options = {options = { theme =  require('user.colorscheme').theme }}
 
 lualine.setup(options)
