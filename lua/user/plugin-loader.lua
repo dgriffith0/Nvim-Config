@@ -40,7 +40,7 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  for _, plugin in ipairs(require('plugins')) do
+  for _, plugin in ipairs(require('user.plugins')) do
     use(plugin)
   end
   if PACKER_BOOTSTRAP then

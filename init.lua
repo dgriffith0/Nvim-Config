@@ -1,5 +1,5 @@
 require "user.options"
-require "user.plugins"
+require "user.plugin-loader"
 require "user.utils"
 require "user.dashboard"
 require "user.colorscheme"

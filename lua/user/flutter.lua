@@ -4,4 +4,12 @@ if not ok then
   return
 end
 
-flutter.setup()
+if not ok then
+  return
+end
+
+flutter.setup {
+lsp = {
+    on_attach = require('user.lsp').common_on_attach,
+  }
+}

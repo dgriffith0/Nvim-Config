@@ -9,11 +9,11 @@ local options = {
   updatetime = 300,                        -- faster completion (4000ms default)
   writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   clipboard = "unnamedplus",               -- use system clipboard
-  mouse = "a",                             -- allow the mouse to be used in all modes
+  -- mouse = "a",                             -- allow the mouse to be used in all modes
   -- UI
   guifont = "Hack Nerd Font Mono:h10",               -- the font used in graphical neovim applications
   cmdheight = 2,                           -- more space in the neovim command line for displaying messages
-  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+  -- completeopt = { "menu", "menuone", "noinsert" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
   pumheight = 10,                          -- pop up menu height
   wrap = false,                            -- display lines as one long line
