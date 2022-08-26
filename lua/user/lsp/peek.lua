@@ -4,6 +4,8 @@ local M = {
   prev_result = nil,
 }
 
+local config = require('user.lsp.config')
+
 local function create_floating_file(location, opts)
   vim.validate {
     location = { location, "t" },
@@ -30,8 +32,8 @@ local function create_floating_file(location, opts)
     bufnr,
     range.start.line,
     math.min(
-      range["end"].line + 1 + (opts.context or require('config').peek.max_height),
-      range.start.line + (opts.max_height or require('config').peek.max_height)
+      range["end"].line + 1 + (opts.context or config.peek.max_height),
+      range.start.line + (opts.max_height or config.peek.max_height)
     ),
     false
   )
@@ -42,8 +44,8 @@ local function create_floating_file(location, opts)
   local width, height = vim.lsp.util._make_floating_popup_size(contents, opts)
   local if_nil = vim.F.if_nil
   opts = vim.lsp.util.make_floating_popup_options(
-    if_nil(width, require('config').peek.max_width),
-    if_nil(height, require('config').peek.max_height),
+    if_nil(width, config.peek.max_width),
+    if_nil(height, config.peek.max_height),
     opts
   )
   -- Don't make it minimal as it is meant to be fully featured
@@ -72,7 +74,7 @@ local function preview_location_callback(result)
 
   local opts = {
     border = "rounded",
-    context = require('config').peek.context,
+    context = config.peek.context,
   }
 
   if vim.tbl_islist(result) then
@@ -137,7 +139,7 @@ function M.Peek(what)
       M.floating_buf,
       "n",
       "<CR>",
-      ":lua require('lvim.lsp.peek').open_file()<CR>",
+      ":lua require('user.lsp.peek').open_file()<CR>",
       { noremap = true, silent = true }
     )
   else

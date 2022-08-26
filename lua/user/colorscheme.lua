@@ -9,5 +9,6 @@ if not status_ok then
 end
 
 vim.o.background = "dark" -- or "light" for light mode
+vim.g.tokyonight_style = "night"
 
 return M

@@ -103,7 +103,7 @@ return {
       ["gs"] = { vim.lsp.buf.signature_help, "show signature help" },
       ["gp"] = {
         function()
-          require("lvim.lsp.peek").Peek "definition"
+          require("user.lsp.peek").Peek "definition"
         end,
         "Peek definition",
       },

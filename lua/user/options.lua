@@ -53,4 +53,4 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-  vim.opt.guifont = { "Fira Code", ":h10" }
+  vim.opt.guifont = { "Fira Code:h10" }
