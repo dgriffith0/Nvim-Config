@@ -27,7 +27,7 @@ local mappings = {
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>bd!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files"},
+  ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
   -- ["f"] = {
   --   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
   --   "Find files",
@@ -131,6 +131,41 @@ local mappings = {
   }
 }
 
+vim.cmd('autocmd FileType dart lua WhichKeyFlutter()')
+
+function WhichKeyFlutter()
+  wk.register({
+    [','] = {
+      name = "Flutter",
+      r = { "<cmd>FlutterRun -t path/to/main<cr>", "Run" },
+      m = { "<cmd>!melos --setup<cr>", "Melos" },
+    },
+  }, { prefix = "<leader>", buffer = 0 })
+end
+
 wk.setup()
 
 wk.register(mappings, opts)
+
+vim.cmd "autocmd FileType * lua CodeRunner()"
+
+function CodeRunner()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+  -- local fname = vim.fn.expand "%:p:t" (useful for using filenames e.g. package.json)
+  local keymap = {}
+
+  if ft == "dart" then
+    keymap = {
+      name = "Flutter",
+      r = { "<cmd>FlutterRun -t path/to/main<cr>", "Run" },
+      m = { "<cmd>!melos --setup<cr>", "Melos" },
+    }
+  end
+  if next(keymap) ~= nil then
+    wk.register(
+      { [','] = keymap },
+      { mode = "n", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>" }
+    )
+  end
+end
