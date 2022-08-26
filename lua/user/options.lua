@@ -24,7 +24,7 @@ local options = {
   splitbelow = true,                       -- force all horizontal splits to go below current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
   number = true,                           -- set numbered lines
-  relativenumber = false,                  -- set relative numbered lines
+  relativenumber = true,                  -- set relative numbered lines
   cursorline = true,                       -- highlight the current line
   -- Search
   hlsearch = true,                         -- highlight all matches on previous search pattern
