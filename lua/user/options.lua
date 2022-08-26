@@ -11,7 +11,7 @@ local options = {
   clipboard = "unnamedplus",               -- use system clipboard
   -- mouse = "a",                             -- allow the mouse to be used in all modes
   -- UI
-  guifont = "Hack Nerd Font Mono:h10",               -- the font used in graphical neovim applications
+  guifont = "Fira Code:h10",               -- the font used in graphical neovim applications
   cmdheight = 2,                           -- more space in the neovim command line for displaying messages
   -- completeopt = { "menu", "menuone", "noinsert" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
@@ -53,4 +53,4 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-  vim.opt.guifont = { "Hack Nerd Font Mono", ":h10" }
+  vim.opt.guifont = { "Fira Code", ":h10" }
