@@ -5,6 +5,10 @@ if not ok then
 end
 
 local options = {
+  view = {
+    width = 100,
+    side = "right"
+  },
   filters = {
     dotfiles = true
   }

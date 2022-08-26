@@ -19,7 +19,7 @@ local mappings = {
   ["r"] = { "<cmd>lua reload_nvim_conf()<cr>", "Reload" },
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+    "<cmd>lua require('telescope.builtin').buffers()<cr>",
     "Buffers",
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
@@ -27,7 +27,8 @@ local mappings = {
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>bd!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+  -- ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+  ["f"] = { "<cmd>lua require('user.custom-finders').find_from_project()<cr>", "Find Files" },
   -- ["f"] = {
   --   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
   --   "Find files",
