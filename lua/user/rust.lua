@@ -4,6 +4,9 @@ if not ok then
   return
 end
 
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
+
 local opts = {
   tools = {
     autoSetHints = true,
