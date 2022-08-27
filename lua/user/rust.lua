@@ -1,11 +1,11 @@
+local M = {}
+
 local ok, rt = pcall(require, 'rust-tools')
 
 if not ok then
   return
 end
 
-local lsp_status = require('lsp-status')
-lsp_status.register_progress()
 
 local opts = {
   tools = {
@@ -39,4 +39,10 @@ local opts = {
   },
 }
 
-rt.setup(opts)
+M.setup = function()
+  local lsp_status = require('lsp-status')
+  lsp_status.register_progress()
+  rt.setup(opts)
+end
+
+return M

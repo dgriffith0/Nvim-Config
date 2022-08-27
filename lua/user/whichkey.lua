@@ -1,4 +1,4 @@
--- https://github.com/folke/which-key.nvim
+local M = {}
 
 local status_ok, wk = pcall(require, "which-key")
 if not status_ok then
@@ -132,8 +132,6 @@ local mappings = {
   }
 }
 
-vim.cmd('autocmd FileType dart lua WhichKeyFlutter()')
-
 function WhichKeyFlutter()
   wk.register({
     [','] = {
@@ -143,12 +141,6 @@ function WhichKeyFlutter()
     },
   }, { prefix = "<leader>", buffer = 0 })
 end
-
-wk.setup()
-
-wk.register(mappings, opts)
-
-vim.cmd "autocmd FileType * lua CodeRunner()"
 
 function CodeRunner()
   local bufnr = vim.api.nvim_get_current_buf()
@@ -170,3 +162,11 @@ function CodeRunner()
     )
   end
 end
+
+M.setup = function()
+  wk.setup()
+
+  wk.register(mappings, opts)
+end
+
+return M

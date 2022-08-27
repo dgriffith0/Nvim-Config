@@ -1,4 +1,4 @@
--- https://github.com/nvim-telescope/telescope.nvim
+local M = {}
 
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
@@ -15,8 +15,9 @@ local options = {
   }
 }
 
-telescope.setup(options)
+M.setup = function()
+  telescope.setup(options)
+  telescope.load_extension("ui-select")
+end
 
-telescope.load_extension("ui-select")
-
-
+return M

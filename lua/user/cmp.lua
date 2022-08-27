@@ -1,3 +1,4 @@
+local M = {}
 ---checks if the character preceding the cursor is a space character
 ---@return boolean true if it is a space character, false otherwise
 local check_backspace = function()
@@ -264,11 +265,11 @@ local options = {
   },
 }
 
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+M.setup = function()
+  local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
 
-cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
-)
+  cmp.setup(options)
+end
 
-cmp.setup(options)
+return M

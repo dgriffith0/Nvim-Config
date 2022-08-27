@@ -1,23 +1,48 @@
 local plugins = {
-
   -- My plugins here
   { "wbthomason/packer.nvim" },
   { "nvim-lua/popup.nvim" },
   { "nvim-lua/plenary.nvim" },
-  { "goolord/alpha-nvim" },
-  { "nvim-telescope/telescope.nvim" },
-  { "folke/which-key.nvim" },
-  { 'hrsh7th/nvim-cmp' },
-  {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  },
-  { 'numToStr/Comment.nvim' },
-  --
   -- Colorschemes
   { 'folke/tokyonight.nvim' },
   { "ellisonleao/gruvbox.nvim" },
-
+  -- Alpha / Dashboard
+  {
+    "goolord/alpha-nvim",
+    config = function()
+      require("user.alpha").setup()
+    end
+  },
+  { "nvim-telescope/telescope.nvim",
+    config = function()
+      require('user.telescope').setup()
+    end
+  },
+  {
+    "folke/which-key.nvim",
+    event = "BufWinEnter",
+    config = function()
+      require('user.whichkey').setup()
+    end
+  },
+  { 'hrsh7th/nvim-cmp',
+    config = function()
+      require('user.cmp').setup()
+    end
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require('user.lualine').setup()
+    end
+  },
+  { 'numToStr/Comment.nvim',
+    event = "BufRead",
+    config = function()
+      require('Comment').setup()
+    end
+  },
   -- Completions
   { 'hrsh7th/cmp-buffer' },
   { 'hrsh7th/cmp-path' },
@@ -27,10 +52,19 @@ local plugins = {
   --lsp
   { 'neovim/nvim-lspconfig' },
   { 'hrsh7th/cmp-nvim-lsp' },
-  { "williamboman/mason.nvim" },
-  { 'jose-elias-alvarez/null-ls.nvim' },
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require('user.mason').setup()
+    end
+  },
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      require('user.null-ls').setup()
+    end
+  },
   { 'nvim-lua/lsp-status.nvim' },
-
   -- snippets
   { "L3MON4D3/LuaSnip" },
   { "rafamadriz/friendly-snippets" },
@@ -39,35 +73,72 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
+    config = function()
+      require('user.treesitter').setup()
+    end
   },
-
   -- Telescope Add-ons
-  { "ahmedkhalf/project.nvim" },
-
+  {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require('user.project').setup()
+    end
+  },
   --Tree Sitter Add-ons
-  { "windwp/nvim-autopairs" },
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require "user.autopairs".setup()
+    end
+  },
   { 'RRethy/nvim-treesitter-endwise' },
   { 'p00f/nvim-ts-rainbow' },
-
   -- Debugging
-  { 'mfussenegger/nvim-dap' },
-
+  { 'mfussenegger/nvim-dap',
+    event = "BufWinEnter",
+  },
   -- Rust
-  { 'simrat39/rust-tools.nvim' },
+  { 'simrat39/rust-tools.nvim',
+    config = function()
+      require('user.rust').setup()
+    end
+  },
   { 'nvim-telescope/telescope-ui-select.nvim' },
   {
     'kyazdani42/nvim-tree.lua',
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
+    config = function()
+      require('user.nvim-tree').setup()
+    end
   },
   {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require('trouble').setup()
+    end
   },
-  { "akinsho/toggleterm.nvim", tag = 'v2.*' },
-  { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' },
-  { 'rcarriga/nvim-notify' },
+  {
+    "akinsho/toggleterm.nvim", tag = 'v2.*',
+    event = "BufWinEnter",
+    config = function()
+      require('user.toggleterm').setup()
+    end
+  },
+  { 'akinsho/flutter-tools.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('user.flutter').setup()
+    end
+  },
+  {
+    'rcarriga/nvim-notify',
+    config = function()
+      require('notify').setup()
+    end
+  },
   {
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features

@@ -1,3 +1,5 @@
+local M = {}
+
 local status_ok, lualine = pcall(require, 'lualine')
 
 if not status_ok then
@@ -20,6 +22,11 @@ local options = {
   options = { theme = require('user.colorscheme').theme },
 }
 options.sections = {
-  lualine_x = { { display_lsp_status, icon = {'ʪ'} }, 'tabs', 'fileformat', 'filetype' },
+  lualine_x = { { display_lsp_status, icon = { 'ʪ' } }, 'tabs', 'fileformat', 'filetype' },
 }
-lualine.setup(options)
+
+M.setup = function()
+  lualine.setup(options)
+end
+
+return M

@@ -1,7 +1,12 @@
-local status_ok, mason = pcall(require, 'mason')
-if not status_ok then
-  return
+local M = {}
+
+M.setup = function()
+  local status_ok, mason = pcall(require, 'mason')
+  if not status_ok then
+    return
+  end
+
+  mason.setup()
 end
 
-mason.setup()
-
+return M
