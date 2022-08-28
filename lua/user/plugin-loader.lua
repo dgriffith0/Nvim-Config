@@ -40,6 +40,8 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
+  pcall(require, "impatient")
+
   for _, plugin in ipairs(require('user.plugins')) do
     use(plugin)
   end

@@ -1,5 +1,5 @@
 local plugins = {
-  -- My plugins here
+  { "lewis6991/impatient.nvim" },
   { "wbthomason/packer.nvim" },
   { "nvim-lua/popup.nvim" },
   { "nvim-lua/plenary.nvim" },

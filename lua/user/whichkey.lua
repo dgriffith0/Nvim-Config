@@ -155,6 +155,15 @@ function CodeRunner()
       m = { "<cmd>!melos --setup<cr>", "Melos" },
     }
   end
+
+  if ft == "rust" or "toml" then
+    keymap = {
+      name = "Rust",
+      r = { "<cmd>!cargo run<cr>", "Run" },
+      u = { "<cmd>!cargo update<cr>", "Update"}
+    }
+  end
+
   if next(keymap) ~= nil then
     wk.register(
       { [','] = keymap },
@@ -167,6 +176,9 @@ M.setup = function()
   wk.setup()
 
   wk.register(mappings, opts)
+
+  vim.api.nvim_create_autocmd('FileType', { pattern = { '*' }, command = "lua CodeRunner()" })
+
 end
 
 return M
