@@ -10,7 +10,8 @@ M.setup = function()
 
   local options = {
     view = {
-      width = 100,
+      adaptive_size = true,
+      -- width = 100,
       side = "right"
     },
     filters = {

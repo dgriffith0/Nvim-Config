@@ -25,7 +25,7 @@ local mappings = {
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
-  ["c"] = { "<cmd>bd!<CR>", "Close Buffer" },
+  ["c"] = { "<cmd>bp|bd #<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   -- ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
   ["f"] = { "<cmd>lua require('user.custom-finders').find_from_project()<cr>", "Find Files" },
@@ -132,16 +132,6 @@ local mappings = {
   }
 }
 
-function WhichKeyFlutter()
-  wk.register({
-    [','] = {
-      name = "Flutter",
-      r = { "<cmd>FlutterRun -t path/to/main<cr>", "Run" },
-      m = { "<cmd>!melos --setup<cr>", "Melos" },
-    },
-  }, { prefix = "<leader>", buffer = 0 })
-end
-
 function CodeRunner()
   local bufnr = vim.api.nvim_get_current_buf()
   local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
@@ -151,7 +141,7 @@ function CodeRunner()
   if ft == "dart" then
     keymap = {
       name = "Flutter",
-      r = { "<cmd>FlutterRun -t path/to/main<cr>", "Run" },
+      [','] = { "<cmd>FlutterRun -t path/to/main<cr>", "Run" },
       m = { "<cmd>!melos --setup<cr>", "Melos" },
     }
   end
@@ -159,8 +149,8 @@ function CodeRunner()
   if ft == "rust" or "toml" then
     keymap = {
       name = "Rust",
-      r = { "<cmd>!cargo run<cr>", "Run" },
-      u = { "<cmd>!cargo update<cr>", "Update"}
+      [','] = { "<cmd>!cargo run<cr>", "Run" },
+      u = { "<cmd>!cargo update<cr>", "Update" }
     }
   end
 

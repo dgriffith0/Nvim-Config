@@ -13,8 +13,6 @@ api.nvim_create_autocmd("BufWritePre", {
   group = mkdir,
 })
 
-api.nvim_create_autocmd('FileType', {pattern = {'dart'}, command = "lua WhichKeyFlutter()"})
-
 function _G.reload_nvim_conf()
   for name,_ in pairs(package.loaded) do
     if name:match('^user')  then
