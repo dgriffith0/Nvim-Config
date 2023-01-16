@@ -58,6 +58,7 @@ local plugins = {
       require('user.mason').setup()
     end
   },
+  {'williamboman/mason-lspconfig.nvim'},
   {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
@@ -146,6 +147,23 @@ local plugins = {
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
       })
+    end
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function ()
+      vim.schedule(function()
+        require("copilot").setup()
+      end)
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function ()
+      require("copilot_cmp").setup()
     end
   }
 }

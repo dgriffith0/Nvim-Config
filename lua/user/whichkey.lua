@@ -17,7 +17,7 @@ local opts = {
 local mappings = {
   -- ["/"] = { "<cmd>lua require(\"Comment.api\").toggle_current_linewise()<CR>", "Comment" },
   ["r"] = { "<cmd>lua reload_nvim_conf()<cr>", "Reload" },
-  ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+  [";"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers()<cr>",
     "Buffers",
@@ -26,6 +26,7 @@ local mappings = {
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>bp|bd #<CR>", "Close Buffer" },
+  ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   -- ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
   ["f"] = { "<cmd>lua require('user.custom-finders').find_from_project()<cr>", "Find Files" },
@@ -82,7 +83,7 @@ local mappings = {
     },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
-    I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+    I = { "<cmd>Mason<cr>", "Mason Info" },
     j = {
       "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
       "Next Diagnostic",
@@ -99,12 +100,14 @@ local mappings = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
     },
+    e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
   },
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+    H = { "<cmd>Telescope highlights<cr>", "Find highlight groups" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
@@ -120,7 +123,10 @@ local mappings = {
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
-
+  T = {
+    name = "Treesitter",
+    i = { ":TSConfigInfo<cr>", "Info" },
+  },
   x = {
     name = "Trouble",
     x = { "<cmd>Trouble<cr>", "Trouble" },
@@ -150,6 +156,7 @@ function CodeRunner()
     keymap = {
       name = "Rust",
       [','] = { "<cmd>!cargo run<cr>", "Run" },
+      b = { "cmd>!cargo build<cr>", "Build"},
       u = { "<cmd>!cargo update<cr>", "Update" }
     }
   end
