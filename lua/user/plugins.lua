@@ -165,7 +165,8 @@ local plugins = {
     config = function ()
       require("copilot_cmp").setup()
     end
-  }
+  },
+  { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 }
 
 return plugins
