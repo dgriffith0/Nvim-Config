@@ -1,4 +1,5 @@
 local plugins = {
+  { 'kyazdani42/nvim-web-devicons' },
   { "lewis6991/impatient.nvim" },
   { "wbthomason/packer.nvim" },
   { "nvim-lua/popup.nvim" },
@@ -32,7 +33,7 @@ local plugins = {
   },
   {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    requires = { 'kyazdani42/nvim-web-devicons'},
     config = function()
       require('user.lualine').setup()
     end
