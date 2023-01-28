@@ -23,6 +23,7 @@ local opts = {
     on_attach = function(_, bufnr)
       require('user.lsp').common_on_attach()
       vim.keymap.set("n", "<S-k>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
     end,
     settings = {
       ["rust-analyzer"] = {
@@ -32,6 +33,13 @@ local opts = {
         diagnostics = {
           disabled = {"unresolved-proc-macro"},
         },
+      },
+    },
+    dap = {
+      adapter = {
+        type = "executable",
+        command = "lldb-vscode",
+        name = "rt_lldb",
       },
     },
   },
