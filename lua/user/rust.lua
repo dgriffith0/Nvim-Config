@@ -1,12 +1,19 @@
 local M = {}
 
+-- local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.8.1/'
+-- local codelldb_path = extension_path .. 'adapter/codelldb'
+-- local liblldb_path = extension_path .. 'lldb/bin/liblldb.dll'
+local extension_path = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/'
+local codelldb_path = extension_path .. 'adapter/codelldb'
+local liblldb_path = extension_path .. 'adapter/codelldb'
+
 local ok, rt = pcall(require, 'rust-tools')
 
 if not ok then
   return
 end
 
-local opts = {
+local opts = { 
   tools = {
     autoSetHints = true,
     runnables = {
@@ -17,13 +24,15 @@ local opts = {
       parameter_hints_prefix = "",
       other_hints_prefix = "",
     },
+  },    
+  dap = {
+    adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
   },
-
   server = {
     on_attach = function(_, bufnr)
       require('user.lsp').common_on_attach()
       vim.keymap.set("n", "<S-k>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+      -- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
     end,
     settings = {
       ["rust-analyzer"] = {
@@ -33,13 +42,6 @@ local opts = {
         diagnostics = {
           disabled = {"unresolved-proc-macro"},
         },
-      },
-    },
-    dap = {
-      adapter = {
-        type = "executable",
-        command = "lldb-vscode",
-        name = "rt_lldb",
       },
     },
   },

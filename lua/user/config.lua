@@ -8,6 +8,7 @@ M.load = function()
   require "user.keymaps"
   require "user.autocommands"
   require "user.lsp"
+  require "user.dap"
 end
 
 return M

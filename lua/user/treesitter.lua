@@ -1,5 +1,7 @@
 local M = {}
 
+require 'nvim-treesitter.install'.compilers = { 'zig' }
+
 local options = {
   ensure_installed = { "lua", "rust" },
   sync_install = false,
