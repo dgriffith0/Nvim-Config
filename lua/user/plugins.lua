@@ -1,6 +1,6 @@
 local plugins = {
   { 'kyazdani42/nvim-web-devicons' },
-  { "lewis6991/impatient.nvim" },
+  -- { "lewis6991/impatient.nvim" },
   { "wbthomason/packer.nvim" },
   { "nvim-lua/popup.nvim" },
   { "nvim-lua/plenary.nvim" },
@@ -97,7 +97,13 @@ local plugins = {
   { 'p00f/nvim-ts-rainbow' },
   -- Debugging
   { 'mfussenegger/nvim-dap',
-    event = "BufWinEnter",
+    -- event = "BufWinEnter",
+  },
+  { "rcarriga/nvim-dap-ui", 
+    requires = {"mfussenegger/nvim-dap"},
+    config = function() 
+      require('dap-ui').setup()
+    end
   },
   -- Rust
   { 'simrat39/rust-tools.nvim',
@@ -166,8 +172,7 @@ local plugins = {
     config = function ()
       require("copilot_cmp").setup()
     end
-  },
-  { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  }
 }
 
 return plugins

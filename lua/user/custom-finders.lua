@@ -11,7 +11,7 @@ function M.find_config_files(opts)
     prompt_prefix = ">> ",
     prompt_title = "~ Nvim Config Files",
     -- cwd = get_config_dir()
-     search_dirs = { get_runtime_dir(), get_config_dir() },
+    search_dirs = { get_runtime_dir().. '/site/pack/packer', get_config_dir() },
   }
 opts = vim.tbl_deep_extend("force", theme_opts, opts)
 builtin.find_files(opts)
