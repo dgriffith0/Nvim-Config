@@ -34,7 +34,7 @@ M.common_on_attach = function(client, bufnr)
   add_lsp_buffer_keybindings(bufnr)
 end
 
-lspconfig['sumneko_lua'].setup {
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       runtime = {

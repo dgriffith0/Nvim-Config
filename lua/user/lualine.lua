@@ -19,7 +19,9 @@ local display_lsp_status = function()
 end
 
 local options = {
-  options = { theme = require('user.colorscheme').theme },
+  options = { theme = 'tokyonight'
+  -- require('user.colorscheme').theme 
+},
 }
 options.sections = {
   lualine_x = { { display_lsp_status, icon = { 'ʪ' } }, 'tabs', 'fileformat', 'filetype' },

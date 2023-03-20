@@ -5,7 +5,7 @@ local plugins = {
   { "nvim-lua/popup.nvim" },
   { "nvim-lua/plenary.nvim" },
   -- Colorschemes
-  { 'folke/tokyonight.nvim' },
+  { 'folke/tokyonight.nvim'},
   { "ellisonleao/gruvbox.nvim" },
   -- Alpha / Dashboard
   {
@@ -102,7 +102,7 @@ local plugins = {
   { "rcarriga/nvim-dap-ui", 
     requires = {"mfussenegger/nvim-dap"},
     config = function() 
-      require('dap-ui').setup()
+      require('dapui').setup()
     end
   },
   -- Rust
