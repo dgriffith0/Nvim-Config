@@ -18,11 +18,8 @@ local mappings = {
   -- ["/"] = { "<cmd>lua require(\"Comment.api\").toggle_current_linewise()<CR>", "Comment" },
   ["r"] = { "<cmd>lua reload_nvim_conf()<cr>", "Reload" },
   [";"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers()<cr>",
-    "Buffers",
+  ["b"] = {"<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers" },
   ["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-  },
       d = {
         name = "Debug",
         t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
@@ -46,15 +43,9 @@ local mappings = {
   ["c"] = { "<cmd>bp|bd #<CR>", "Close Buffer" },
   ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  -- ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
   ["f"] = { "<cmd>lua require('user.custom-finders').find_from_project()<cr>", "Find Files" },
-  -- ["f"] = {
-  --   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-  --   "Find files",
-  -- },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["p"] = { "<cmd>Telescope projects<cr>", "Projects" },
-
   P = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -99,7 +90,7 @@ local mappings = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
       "Workspace Diagnostics",
     },
-    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.format({async = true})<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>Mason<cr>", "Mason Info" },
     j = {
@@ -148,6 +139,7 @@ local mappings = {
   x = {
     name = "Trouble",
     x = { "<cmd>Trouble<cr>", "Trouble" },
+    t = { "<cmd>TodoTrouble<cr>", "Todos" },
     w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
     d = { "<cmd>Trouble document_diagnostics<cr>", "Document Diagnostics" },
     l = { "<cmd>Trouble loclist<cr>", "Location List" },

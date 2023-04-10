@@ -26,6 +26,13 @@ local plugins = {
       require('user.whichkey').setup()
     end
   },
+  {
+   "folke/todo-comments.nvim",
+   requires = "nvim-lua/plenary.nvim",
+   config = function()
+     require("user.todo").setup() 
+   end
+  },
   { 'hrsh7th/nvim-cmp',
     config = function()
       require('user.cmp').setup()
