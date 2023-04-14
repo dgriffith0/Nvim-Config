@@ -14,8 +14,15 @@ local opts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
+function launchjson_continue()
+  if vim.fn.filereadable('.vscode/launch.json') then
+    require('dap.ext.vscode').load_launchjs(nil, { lldb = {'rust'} })
+  end  
+  require('dap').continue()
+end
+
 local mappings = {
-  -- ["/"] = { "<cmd>lua require(\"Comment.api\").toggle_current_linewise()<CR>", "Comment" },
+  ["/"] = { "<cmd>lua require(\"Comment.api\").toggle_current_linewise()<CR>", "Comment" },
   ["r"] = { "<cmd>lua reload_nvim_conf()<cr>", "Reload" },
   [";"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["b"] = {"<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers" },
@@ -33,7 +40,7 @@ local mappings = {
         u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
         p = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
         r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-        s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+        s = { "<cmd>lua launchjson_continue()<cr>", "Start" },
         q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
         U = { "<cmd>lua require'dapui'.toggle({reset = true})<cr>", "Toggle UI" },
       },

@@ -9,6 +9,7 @@ M.load = function()
   require "user.autocommands"
   require "user.lsp"
   require "user.dap"
+  require "user.dap_cargo"
 end
 
 return M
