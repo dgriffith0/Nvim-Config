@@ -173,6 +173,7 @@ function CodeRunner()
     keymap = {
       name = "Rust",
       [','] = { "<cmd>!cargo run<cr>", "Run" },
+      r = { "<cmd>RustRunnables<cr>", "Runnables" },
       b = { "cmd>!cargo build<cr>", "Build"},
       u = { "<cmd>!cargo update<cr>", "Update" }
     }
