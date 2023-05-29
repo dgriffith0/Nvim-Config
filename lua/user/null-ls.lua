@@ -9,7 +9,8 @@ M.setup = function()
 
   local options = {
     sources = {
-      null_ls.builtins.formatting.rustfmt
+      null_ls.builtins.formatting.rustfmt,
+ null_ls.builtins.formatting.stylua
     }
   }
 
