@@ -5,7 +5,7 @@ local plugins = {
   { "nvim-lua/popup.nvim" },
   { "nvim-lua/plenary.nvim" },
   -- Colorschemes
-  { 'folke/tokyonight.nvim'},
+  { 'folke/tokyonight.nvim' },
   { "ellisonleao/gruvbox.nvim" },
   -- Alpha / Dashboard
   {
@@ -14,7 +14,8 @@ local plugins = {
       require("user.alpha").setup()
     end
   },
-  { "nvim-telescope/telescope.nvim",
+  {
+    "nvim-telescope/telescope.nvim",
     config = function()
       require('user.telescope').setup()
     end
@@ -27,25 +28,27 @@ local plugins = {
     end
   },
   {
-   "folke/todo-comments.nvim",
-   requires = "nvim-lua/plenary.nvim",
-   config = function()
-     require("user.todo").setup() 
-   end
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("user.todo").setup()
+    end
   },
-  { 'hrsh7th/nvim-cmp',
+  {
+    'hrsh7th/nvim-cmp',
     config = function()
       require('user.cmp').setup()
     end
   },
   {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons'},
+    requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('user.lualine').setup()
     end
   },
-  { 'numToStr/Comment.nvim',
+  {
+    'numToStr/Comment.nvim',
     event = "BufRead",
     config = function()
       require('Comment').setup()
@@ -66,7 +69,7 @@ local plugins = {
       require('user.mason').setup()
     end
   },
-  {'williamboman/mason-lspconfig.nvim'},
+  { 'williamboman/mason-lspconfig.nvim' },
   {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
@@ -106,14 +109,16 @@ local plugins = {
   { 'mfussenegger/nvim-dap',
     -- event = "BufWinEnter",
   },
-  { "rcarriga/nvim-dap-ui", 
-    requires = {"mfussenegger/nvim-dap"},
-    config = function() 
+  {
+    "rcarriga/nvim-dap-ui",
+    requires = { "mfussenegger/nvim-dap" },
+    config = function()
       require('dapui').setup()
     end
   },
   -- Rust
-  { 'simrat39/rust-tools.nvim',
+  {
+    'simrat39/rust-tools.nvim',
     config = function()
       require('user.rust').setup()
     end
@@ -136,13 +141,15 @@ local plugins = {
     end
   },
   {
-    "akinsho/toggleterm.nvim", tag = 'v2.*',
+    "akinsho/toggleterm.nvim",
+    tag = 'v2.*',
     event = "BufWinEnter",
     config = function()
       require('user.toggleterm').setup()
     end
   },
-  { 'akinsho/flutter-tools.nvim',
+  {
+    'akinsho/flutter-tools.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = function()
       require('user.flutter').setup()
@@ -167,7 +174,7 @@ local plugins = {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
-    config = function ()
+    config = function()
       vim.schedule(function()
         require("copilot").setup()
       end)
@@ -176,17 +183,32 @@ local plugins = {
   {
     "zbirenbaum/copilot-cmp",
     after = { "copilot.lua" },
-    config = function ()
+    config = function()
       require("copilot_cmp").setup()
     end
   },
-{ 
-  "iamcco/markdown-preview.nvim", 
-  run = "cd app && npm install", 
-  setup = function() 
-    vim.g.mkdp_filetypes = { "markdown" }
-  end, 
-  ft = { "markdown" }, }
+  {
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+  -- Doesnt work on windows
+  -- {
+  --   'stevearc/oil.nvim',
+  --   config = function() require('oil').setup() end
+  {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Dev", "~/Downloads", "/", "/Users/Dev" },
+      }
+    end
+  },
+  { 'ggandor/lightspeed.vim' }
 }
 
 return plugins

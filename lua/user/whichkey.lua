@@ -6,53 +6,57 @@ if not status_ok then
 end
 
 local opts = {
-  mode = "n", -- NORMAL mode
+  mode = "n",     -- NORMAL mode
   prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
+  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true,  -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
+  nowait = true,  -- use `nowait` when creating keymaps
 }
 
 function launchjson_continue()
   if vim.fn.filereadable('.vscode/launch.json') then
-    require('dap.ext.vscode').load_launchjs(nil, { lldb = {'rust'} })
-  end  
+    require('dap.ext.vscode').load_launchjs(nil, { lldb = { 'rust' } })
+  end
   require('dap').continue()
 end
 
 local mappings = {
-  ["/"] = { "<cmd>lua require(\"Comment.api\").toggle_current_linewise()<CR>", "Comment" },
-  ["r"] = { "<cmd>lua reload_nvim_conf()<cr>", "Reload" },
   [";"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["b"] = {"<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers" },
+  ["b"] = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers" },
   ["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-      d = {
-        name = "Debug",
-        t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-        b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
-        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-        C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
-        d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-        g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-        i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-        o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-        u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-        p = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
-        r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-        s = { "<cmd>lua launchjson_continue()<cr>", "Start" },
-        q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
-        U = { "<cmd>lua require'dapui'.toggle({reset = true})<cr>", "Toggle UI" },
-      },
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>q!<CR>", "Quit" },
+  d = {
+    name = "Debug",
+    t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+    b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+    c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+    C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
+    d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+    g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+    i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+    o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+    u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+    p = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
+    r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+    s = { "<cmd>lua launchjson_continue()<cr>", "Start" },
+    q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
+    U = { "<cmd>lua require'dapui'.toggle({reset = true})<cr>", "Toggle UI" },
+  },
+  ["v"] = { name = "Vim",
+    c = { "<cmd>lua require('user.custom-finders').find_config_files()<cr>", "Configs" },
+    w = { "<cmd>w!<CR>", "Save" },
+    q = { "<cmd>q!<CR>", "Quit" },
+    r = { "<cmd>lua reload_nvim_conf()<cr>", "Reload" },
+  },
   ["c"] = { "<cmd>bp|bd #<CR>", "Close Buffer" },
   ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["f"] = { "<cmd>lua require('user.custom-finders').find_from_project()<cr>", "Find Files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-  ["p"] = { "<cmd>Telescope projects<cr>", "Projects" },
+  ["p"] = { name = "Project",
+    p = { "<cmd>Telescope projects<cr>", "Projects" },
+    e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+  },
   P = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -62,30 +66,8 @@ local mappings = {
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
   ["g"] = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-  --
-  -- g = {
-  --   name = "Git",
-  --   g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-  --   j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-  --   k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-  --   l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-  --   p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-  --   r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-  --   R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-  --   s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-  --   u = {
-  --     "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-  --     "Undo Stage Hunk",
-  --   },
-  --   o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-  --   b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-  --   c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-  --   d = {
-  --     "<cmd>Gitsigns diffthis HEAD<cr>",
-  --     "Diff",
-  --   },
-  -- },
-  --
+  e = { "<cmd>NvimTreeToggle<cr>", "File Explorer" },
+  q = { "Quickfix" },
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -109,7 +91,6 @@ local mappings = {
       "Prev Diagnostic",
     },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     S = {
@@ -130,7 +111,6 @@ local mappings = {
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
-
   t = {
     name = "Terminal",
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
@@ -174,15 +154,22 @@ function CodeRunner()
       name = "Rust",
       [','] = { "<cmd>!cargo run<cr>", "Run" },
       r = { "<cmd>RustRunnables<cr>", "Runnables" },
-      b = { "cmd>!cargo build<cr>", "Build"},
+      b = { "cmd>!cargo build<cr>", "Build" },
       u = { "<cmd>!cargo update<cr>", "Update" }
     }
   end
 
+  -- if ft == "clj" or "cljs" then
+  --   keymap = {
+  --     name = "Clojure",
+  --     [','] = {"<cmd>!shadow-cljs watch app<cr>", "Shadow Cljs"},
+  --   }
+  -- end
+
   if next(keymap) ~= nil then
     wk.register(
-      { [','] = keymap },
-      { mode = "n", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>" }
+      keymap,
+      { mode = "n", silent = true, noremap = true, buffer = bufnr, prefix = "," }
     )
   end
 end
@@ -193,7 +180,6 @@ M.setup = function()
   wk.register(mappings, opts)
 
   vim.api.nvim_create_autocmd('FileType', { pattern = { '*' }, command = "lua CodeRunner()" })
-
 end
 
 return M

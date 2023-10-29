@@ -10,7 +10,7 @@ if not ok then
   return
 end
 
-local opts = { 
+local opts = {
   tools = {
     autoSetHints = true,
     runnables = {
@@ -21,7 +21,7 @@ local opts = {
       parameter_hints_prefix = "",
       other_hints_prefix = "",
     },
-  },    
+  },
   dap = {
     adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
   },
@@ -37,7 +37,7 @@ local opts = {
           command = "clippy"
         },
         diagnostics = {
-          disabled = {"unresolved-proc-macro"},
+          disabled = { "unresolved-proc-macro" },
         },
       },
     },
