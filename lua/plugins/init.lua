@@ -1,12 +1,16 @@
 local plugins = {
   { 'kyazdani42/nvim-web-devicons' },
-  -- { "lewis6991/impatient.nvim" },
   { "wbthomason/packer.nvim" },
   { "nvim-lua/popup.nvim" },
   { "nvim-lua/plenary.nvim" },
   -- Colorschemes
   { 'folke/tokyonight.nvim' },
   { "ellisonleao/gruvbox.nvim" },
+  {
+    "catppuccin/nvim",
+    as = "catppuccin"
+  },
+  { "rebelot/kanagawa.nvim" },
   -- Alpha / Dashboard
   {
     "goolord/alpha-nvim",
@@ -16,6 +20,9 @@ local plugins = {
   },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope-live-grep-args.nvim" },
+    },
     config = function()
       require('user.telescope').setup()
     end
@@ -29,7 +36,7 @@ local plugins = {
   },
   {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("user.todo").setup()
     end
@@ -40,9 +47,10 @@ local plugins = {
       require('user.cmp').setup()
     end
   },
+  { "lukas-reineke/cmp-under-comparator" },
   {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('user.lualine').setup()
     end
@@ -84,7 +92,7 @@ local plugins = {
   -- language parser / highlighting
   {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    build = ":TSUpdate",
     config = function()
       require('user.treesitter').setup()
     end
@@ -111,22 +119,15 @@ local plugins = {
   },
   {
     "rcarriga/nvim-dap-ui",
-    requires = { "mfussenegger/nvim-dap" },
+    dependencies = { "mfussenegger/nvim-dap" },
     config = function()
       require('dapui').setup()
-    end
-  },
-  -- Rust
-  {
-    'simrat39/rust-tools.nvim',
-    config = function()
-      require('user.rust').setup()
     end
   },
   { 'nvim-telescope/telescope-ui-select.nvim' },
   {
     'kyazdani42/nvim-tree.lua',
-    requires = {
+    dependencies = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
     config = function()
@@ -135,14 +136,14 @@ local plugins = {
   },
   {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require('trouble').setup()
     end
   },
   {
     "akinsho/toggleterm.nvim",
-    tag = 'v2.*',
+    version = "v2.*",
     event = "BufWinEnter",
     config = function()
       require('user.toggleterm').setup()
@@ -150,7 +151,7 @@ local plugins = {
   },
   {
     'akinsho/flutter-tools.nvim',
-    requires = 'nvim-lua/plenary.nvim',
+    dependencies = 'nvim-lua/plenary.nvim',
     config = function()
       require('user.flutter').setup()
     end
@@ -163,7 +164,7 @@ local plugins = {
   },
   {
     "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
@@ -175,40 +176,17 @@ local plugins = {
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      vim.schedule(function()
-        require("copilot").setup()
-      end)
+      require('user.copilot').setup()
     end,
   },
   {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end
-  },
-  {
     "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
+    build = "cd app && npm install",
     setup = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
   },
-  -- Doesnt work on windows
-  -- {
-  --   'stevearc/oil.nvim',
-  --   config = function() require('oil').setup() end
-  {
-    'rmagatti/auto-session',
-    config = function()
-      require("auto-session").setup {
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Dev", "~/Downloads", "/", "/Users/Dev" },
-      }
-    end
-  },
-  { 'ggandor/lightspeed.vim' }
 }
 
 return plugins
