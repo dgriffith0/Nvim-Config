@@ -11,7 +11,7 @@ local options = {
   clipboard = "unnamedplus",               -- use system clipboard
   -- mouse = "a",                             -- allow the mouse to be used in all modes
   -- UI
-  guifont = "Fira Code:h10",               -- the font used in graphical neovim applications
+  guifont = "Fira Code:h12",               -- the font used in graphical neovim applications
   cmdheight = 2,                           -- more space in the neovim command line for displaying messages
   -- completeopt = { "menu", "menuone", "noinsert" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
@@ -24,7 +24,7 @@ local options = {
   splitbelow = true,                       -- force all horizontal splits to go below current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
   number = true,                           -- set numbered lines
-  relativenumber = false,                  -- set relative numbered lines
+  relativenumber = true,                  -- set relative numbered lines
   cursorline = true,                       -- highlight the current line
   -- Search
   hlsearch = true,                         -- highlight all matches on previous search pattern
@@ -41,6 +41,8 @@ local options = {
   whichwrap = "bs<>[]hl",                  -- which "horizontal" keys are allowed to travel to prev/next line, see :help 'whichwrap'
 }
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 vim.opt.shortmess:append("c") -- don't give Ctrl-P,Ctrl-N messages
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- to separate vim plugins from neovim on Arch
 vim.opt.iskeyword:remove("-") -- treat a-word, word- as one w
@@ -55,4 +57,4 @@ end
 
 vim.opt.guifont = { "Fira Code:h10" }
 
-vim.notify = require("notify")
+-- vim.notify = require("notify")

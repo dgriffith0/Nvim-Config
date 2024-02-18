@@ -12,7 +12,7 @@ parser_config.wgsl = {
 }
 
 local options = {
-  ensure_installed = { "lua", "rust", "wgsl"},
+  ensure_installed = { "lua", "rust", "wgsl_bevy"},
   sync_install = false,
   auto_install = true,
   highlight = {

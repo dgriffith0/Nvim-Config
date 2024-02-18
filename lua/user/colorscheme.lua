@@ -1,8 +1,11 @@
 local M = {}
 
-M.theme = 'tokyonight-night' -- "gruvbox"
+-- M.theme = 'tokyonight-night'
+-- M.theme = 'gruvbox'
+M.theme = 'catppuccin'
 
--- vim.o.background = "dark" -- or "light" for light mode
+vim.o.background = "dark"
+-- vim.o.background = "light"
 -- vim.g.tokyonight_style = "night"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. M.theme)

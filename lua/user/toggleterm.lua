@@ -7,7 +7,16 @@ M.setup = function()
     return
   end
 
-  terminal.setup()
+  terminal.setup({
+    direction = 'vertical',
+    size = function(term)
+    if term.direction == "horizontal" then
+      return 50
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.5
+    end
+  end,
+  })
 
   local Terminal = require('toggleterm.terminal').Terminal
 

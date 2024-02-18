@@ -44,8 +44,9 @@ local mappings = {
   },
   ["v"] = { name = "Vim",
     c = { "<cmd>lua require('user.custom-finders').find_config_files()<cr>", "Configs" },
-    w = { "<cmd>w!<CR>", "Save" },
-    q = { "<cmd>q!<CR>", "Quit" },
+    d = { ":exec &bg=='light'? 'set bg=dark' : 'set bg=light'<CR>", "Dark/Light Mode"},
+    w = { "<cmd>wa<CR>", "Save All" },
+    q = { "<cmd>wqa<CR>", "Save & Quit" },
     r = { "<cmd>lua reload_nvim_conf()<cr>", "Reload" },
   },
   ["c"] = { "<cmd>bp|bd #<CR>", "Close Buffer" },
@@ -102,7 +103,7 @@ local mappings = {
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+    c = { "<cmd>Telescope colorscheme {enable_preview=true}<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     H = { "<cmd>Telescope highlights<cr>", "Find highlight groups" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
@@ -113,14 +114,14 @@ local mappings = {
   },
   t = {
     name = "Terminal",
-    u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+    t = { "<cmd>ToggleTermToggleAll<cr>", "Toggle All" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
+    h = { "<cmd>ToggleTerm size=50 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
   T = {
     name = "Treesitter",
+    u = { ":TSUpdate<cr>", "Update" },
     i = { ":TSConfigInfo<cr>", "Info" },
   },
   x = {
@@ -138,48 +139,25 @@ local mappings = {
 function CodeRunner()
   local bufnr = vim.api.nvim_get_current_buf()
   local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
-  -- local fname = vim.fn.expand "%:p:t" (useful for using filenames e.g. package.json)
-  local keymap = {}
-
-  if ft == "dart" then
-    keymap = {
-      name = "Flutter",
-      [','] = { "<cmd>FlutterRun -t path/to/main<cr>", "Run" },
-      m = { "<cmd>!melos --setup<cr>", "Melos" },
-    }
-  end
+  local key_opts = { mode = "n", silent = true, noremap = true, buffer = bufnr, prefix = "<localleader>" }
 
   if ft == "rust" or "toml" then
-    keymap = {
-      name = "Rust",
-      [','] = { "<cmd>!cargo run<cr>", "Run" },
-      r = { "<cmd>RustRunnables<cr>", "Runnables" },
-      b = { "cmd>!cargo build<cr>", "Build" },
-      u = { "<cmd>!cargo update<cr>", "Update" }
-    }
-  end
-
-  -- if ft == "clj" or "cljs" then
-  --   keymap = {
-  --     name = "Clojure",
-  --     [','] = {"<cmd>!shadow-cljs watch app<cr>", "Shadow Cljs"},
-  --   }
-  -- end
-
-  if next(keymap) ~= nil then
     wk.register(
-      keymap,
-      { mode = "n", silent = true, noremap = true, buffer = bufnr, prefix = "," }
-    )
+      {
+        name = "Rust",
+        [','] = {'<cmd>TermExec cmd="cargo run"<cr>', "Run" },
+        r = { "<cmd>RustRunnables<cr>", "Runnables" },
+        b = { "cmd>!cargo build<cr>", "Build" },
+        u = { "<cmd>!cargo update<cr>", "Update" }
+      }, key_opts)
   end
 end
 
 M.setup = function()
   wk.setup()
-
   wk.register(mappings, opts)
-
-  vim.api.nvim_create_autocmd('FileType', { pattern = { '*' }, command = "lua CodeRunner()" })
+  vim.api.nvim_create_autocmd('Filetype', { pattern = { '*' }, command = "lua CodeRunner()" })
+  vim.api.nvim_create_user_command('KeySetup', CodeRunner, {})
 end
 
 return M

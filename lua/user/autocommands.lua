@@ -32,3 +32,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.wgsl",
+  callback = function()
+    vim.bo.filetype = "wgsl"
+  end,
+})
