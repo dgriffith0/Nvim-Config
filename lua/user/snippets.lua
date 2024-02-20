@@ -5,5 +5,4 @@ if not ok then
 end
 
 -- require("luasnip.loaders.from_vscode").lazy_load()
-snippets.filetype_extend("dart", {"flutter"})
 snippets.loaders.from_vscode.lazy_load()

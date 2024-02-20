@@ -20,7 +20,6 @@ local options = {
     additional_vim_regex_highlighting = false,
   },
   endwise = {
-    -- Enables plugin: https://github.com/RRethy/nvim-treesitter-endwise
     enable = true
   },
   rainbow = {

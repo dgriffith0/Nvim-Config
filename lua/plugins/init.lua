@@ -1,6 +1,4 @@
 local plugins = {
-  { 'kyazdani42/nvim-web-devicons' },
-  { "wbthomason/packer.nvim" },
   { "nvim-lua/popup.nvim" },
   { "nvim-lua/plenary.nvim" },
   -- Colorschemes
@@ -10,7 +8,6 @@ local plugins = {
     "catppuccin/nvim",
     as = "catppuccin"
   },
-  { "rebelot/kanagawa.nvim" },
   -- Alpha / Dashboard
   {
     "goolord/alpha-nvim",
@@ -42,13 +39,6 @@ local plugins = {
     end
   },
   {
-    'hrsh7th/nvim-cmp',
-    config = function()
-      require('user.cmp').setup()
-    end
-  },
-  { "lukas-reineke/cmp-under-comparator" },
-  {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
@@ -63,6 +53,7 @@ local plugins = {
     end
   },
   -- Completions
+  { "lukas-reineke/cmp-under-comparator" },
   { 'hrsh7th/cmp-buffer' },
   { 'hrsh7th/cmp-path' },
   { 'hrsh7th/cmp-cmdline' },
@@ -78,12 +69,6 @@ local plugins = {
     end
   },
   { 'williamboman/mason-lspconfig.nvim' },
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require('user.null-ls').setup()
-    end
-  },
   { 'nvim-lua/lsp-status.nvim' },
   -- snippets
   { "L3MON4D3/LuaSnip" },
@@ -98,19 +83,7 @@ local plugins = {
     end
   },
   -- Telescope Add-ons
-  {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require('user.project').setup()
-    end
-  },
   --Tree Sitter Add-ons
-  {
-    "windwp/nvim-autopairs",
-    config = function()
-      require "user.autopairs".setup()
-    end
-  },
   { 'RRethy/nvim-treesitter-endwise' },
   { 'p00f/nvim-ts-rainbow' },
   -- Debugging
@@ -150,13 +123,6 @@ local plugins = {
     end
   },
   {
-    'akinsho/flutter-tools.nvim',
-    dependencies = 'nvim-lua/plenary.nvim',
-    config = function()
-      require('user.flutter').setup()
-    end
-  },
-  {
     'rcarriga/nvim-notify',
     config = function()
       require('notify').setup()
@@ -171,22 +137,13 @@ local plugins = {
       })
     end
   },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require('user.copilot').setup()
-    end,
-  },
-  {
-    "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    setup = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
-  },
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  --   ft = { "markdown" },
+  --   build = function() vim.fn["mkdp#util#install"]() end,
+  -- }
+
 }
 
 return plugins

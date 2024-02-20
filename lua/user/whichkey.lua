@@ -146,7 +146,8 @@ function CodeRunner()
       {
         name = "Rust",
         [','] = {'<cmd>TermExec cmd="cargo run"<cr>', "Run" },
-        r = { "<cmd>RustRunnables<cr>", "Runnables" },
+        r = { "<cmd>RustLsp runnables<cr>", "Runnables" },
+        t = { "<cmd>RustLsp testables<cr>", "Testables"},
         b = { "cmd>!cargo build<cr>", "Build" },
         u = { "<cmd>!cargo update<cr>", "Update" }
       }, key_opts)
